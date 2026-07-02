@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PMIverse | Penyelesaian Masalah Secara Inventif — RBT Tingkatan 2</title>
+  <meta name="description" content="PMIverse — Belajar Penyelesaian Masalah Secara Inventif dengan cara yang menyeronokkan. Dikuasakan oleh PMI Agent." />
+
+  <!-- Fonts: Poppins (display / headings) + Inter (body copy) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon (inline SVG lightbulb) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png" />
+
+  <!-- PWA: installable, fullscreen "Add to Home Screen" on phones -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#1b1030" />
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="PMIverse" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================= -->
+  <!-- PRELOADER                     -->
+  <!-- ============================= -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__orbit">
+      <div class="preloader__core"></div>
+    </div>
+    <p class="preloader__text">Menyediakan PMIverse<span class="dots"><span>.</span><span>.</span><span>.</span></span></p>
+  </div>
+
+  <!-- Custom cursor (desktop only, decorative) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============================= -->
+  <!-- NAVIGATION                    -->
+  <!-- ============================= -->
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav__inner">
+      <a href="#hero" class="site-nav__logo">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">PMI<span class="accent">verse</span></span>
+      </a>
+
+      <nav class="site-nav__links" id="navLinks">
+        <a href="#tentang" data-nav>Tentang</a>
+        <a href="#kenapa" data-nav>Kenapa</a>
+        <a href="#perjalanan" data-nav>Perjalanan</a>
+        <button type="button" class="site-nav__agent-link" data-open-agent>🤖 PMI Agent</button>
+      </nav>
+
+      <div class="site-nav__badge">
+        <span class="pulse-dot"></span>
+        Powered by <strong>&nbsp;PMI Agent</strong>
+      </div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================= -->
+    <!-- SECTION 1 : HERO               -->
+    <!-- ============================= -->
+    <section class="section hero" id="hero">
+      <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__blueprint" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--a" aria-hidden="true"></div>
+      <div class="hero__glow hero__glow--b" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <p class="hero__eyebrow" data-reveal>REKA BENTUK &amp; TEKNOLOGI · TINGKATAN 2</p>
+        <h1 class="hero__title">
+          <span class="hero__title-line" data-reveal>PMI<span class="accent">verse</span></span>
+        </h1>
+        <p class="hero__subtitle" data-reveal>
+          Belajar <strong>Penyelesaian Masalah Secara Inventif</strong><br class="br-desktop" />
+          dengan cara yang menyeronokkan
+        </p>
+
+        <a href="#tentang" class="cta-btn" id="ctaStart" data-reveal>
+          <span>Mari Mula Belajar</span>
+          <svg viewBox="0 0 24 24" fill="none" class="cta-btn__arrow">
+            <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero__scroll-cue" aria-hidden="true">
+        <span>Skrol ke bawah</span>
+        <div class="scroll-cue__mouse"><div class="scroll-cue__wheel"></div></div>
+      </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- SECTION 2 : APA ITU            -->
+    <!-- ============================= -->
+    <section class="section about" id="tentang">
+      <div class="section__bg-shape about__shape-1" aria-hidden="true"></div>
+      <div class="section__bg-shape about__shape-2" aria-hidden="true"></div>
+
+      <div class="container">
+        <span class="section-tag" data-reveal>01 · KONSEP</span>
+        <h2 class="section-title" data-split>Apa itu Penyelesaian<br />Masalah Secara Inventif?</h2>
+        <p class="section-lead" data-reveal>
+          Bayangkan anda ada payung yang sentiasa basah selepas hujan, tetapi anda tidak mahu
+          bilik jadi berselerak dengan air menitis. Penyelesaian <em>biasa</em> ialah letak
+          sahaja di luar. Penyelesaian <strong>inventif</strong> pula mencipta sesuatu yang baharu
+          &mdash; contohnya beg payung pintar yang menyerap air secara automatik!
+        </p>
+
+        <div class="card-grid about__cards">
+          <div class="glass-card tilt-card" data-tilt>
+            <div class="glass-card__icon icon-bounce">
+              <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"/><path d="M24 15v10l7 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Definisi Mudah</h3>
+            <p>Cara berfikir untuk mencari <strong>penyelesaian baharu &amp; kreatif</strong> bagi masalah yang kelihatan sukar atau bercanggah, bukan sekadar ubah suai kecil.</p>
+          </div>
+
+          <div class="glass-card tilt-card" data-tilt>
+            <div class="glass-card__icon icon-bounce">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M24 6l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1 4-9z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Kenapa Berbeza?</h3>
+            <p>Ia bukan cuba-cuba secara rambang. Ia menggunakan <strong>langkah &amp; prinsip tersusun</strong> supaya idea baharu lebih cepat dan tepat dijumpai.</p>
+          </div>
+
+          <div class="glass-card tilt-card" data-tilt>
+            <div class="glass-card__icon icon-bounce">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="10" width="32" height="24" rx="3" stroke="currentColor" stroke-width="2.2"/><path d="M8 18h32M16 26h4M24 26h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Contoh Sebenar</h3>
+            <p>Beg galas berkipas untuk penunggang basikal, kasut yang bertukar saiz mengikut usia kanak-kanak &mdash; semuanya hasil pemikiran inventif!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- SECTION 3 : KENAPA PERLU        -->
+    <!-- ============================= -->
+    <section class="section why" id="kenapa">
+      <div class="container">
+        <span class="section-tag section-tag--light" data-reveal>02 · SEBAB</span>
+        <h2 class="section-title section-title--light" data-split>Kenapa Kita Perlu<br />Berfikir Secara Inventif?</h2>
+        <p class="section-lead section-lead--light" data-reveal>
+          Masalah "pelik" muncul di mana-mana &mdash; bukan hanya di makmal sains! Lihat situasi
+          kelakar ini dan bagaimana pemikiran inventif menyelamatkan keadaan.
+        </p>
+
+        <div class="flip-grid">
+
+          <div class="flip-card" tabindex="0" data-flip>
+            <div class="flip-card__inner">
+              <div class="flip-card__face flip-card__front">
+                <span class="flip-card__emoji">🏫</span>
+                <h3>Sekolah</h3>
+                <span class="flip-card__hint">Tekan untuk lihat</span>
+              </div>
+              <div class="flip-card__face flip-card__back">
+                <p><strong>Masalah:</strong> Beg terlalu berat, buku bercampur aduk!</p>
+                <p><strong>Idea Inventif:</strong> Fail bermodul warna-warni yang boleh tanggal-pasang ikut jadual harian.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" tabindex="0" data-flip>
+            <div class="flip-card__inner">
+              <div class="flip-card__face flip-card__front">
+                <span class="flip-card__emoji">🏠</span>
+                <h3>Rumah</h3>
+                <span class="flip-card__hint">Tekan untuk lihat</span>
+              </div>
+              <div class="flip-card__face flip-card__back">
+                <p><strong>Masalah:</strong> Kabel pengecas selalu terkusut di dalam laci.</p>
+                <p><strong>Idea Inventif:</strong> Penggulung kabel magnetik yang melekat kemas sendiri.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" tabindex="0" data-flip>
+            <div class="flip-card__inner">
+              <div class="flip-card__face flip-card__front">
+                <span class="flip-card__emoji">⚽</span>
+                <h3>Sukan</h3>
+                <span class="flip-card__hint">Tekan untuk lihat</span>
+              </div>
+              <div class="flip-card__face flip-card__back">
+                <p><strong>Masalah:</strong> Bola hilang di semak semasa waktu malam.</p>
+                <p><strong>Idea Inventif:</strong> Bola bersinar (glow-in-the-dark) dengan teras LED tahan hentakan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flip-card" tabindex="0" data-flip>
+            <div class="flip-card__inner">
+              <div class="flip-card__face flip-card__front">
+                <span class="flip-card__emoji">💻</span>
+                <h3>Teknologi</h3>
+                <span class="flip-card__hint">Tekan untuk lihat</span>
+              </div>
+              <div class="flip-card__face flip-card__back">
+                <p><strong>Masalah:</strong> Bateri telefon cepat habis semasa kelas luar.</p>
+                <p><strong>Idea Inventif:</strong> Kulit telefon bersepadu sel suria mikro yang mengecas sambil berjalan.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= -->
+    <!-- SECTION 4 : LEARNING JOURNEY    -->
+    <!-- ============================= -->
+    <section class="section journey" id="perjalanan">
+      <div class="container">
+        <span class="section-tag" data-reveal>03 · PERJALANAN</span>
+        <h2 class="section-title" data-split>Perjalanan Pembelajaran Interaktif</h2>
+        <p class="section-lead" data-reveal>
+          Terokai enam langkah utama dalam Penyelesaian Masalah Secara Inventif. Klik kad untuk
+          bersedia &mdash; penerangan penuh setiap topik akan ditambah dalam versi akan datang!
+        </p>
+
+        <div class="journey-grid">
+
+          <article class="journey-card" data-tilt style="--card-color:#6C5CE7;">
+            <span class="journey-card__num">01</span>
+            <div class="journey-card__icon">
+              <svg viewBox="0 0 48 48" fill="none"><circle cx="21" cy="21" r="13" stroke="currentColor" stroke-width="2.6"/><path d="M30.5 30.5L40 40" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Mengenal Pasti Masalah</h3>
+            <p>Kenal pasti dengan tepat apakah masalah sebenar sebelum mencari penyelesaian.</p>
+            <span class="journey-card__badge">Akan Datang</span>
+          </article>
+
+          <article class="journey-card" data-tilt style="--card-color:#00B894;">
+            <span class="journey-card__num">02</span>
+            <div class="journey-card__icon">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M8 40V22M20 40V12M32 40V26M44 40V16" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Analisis Fungsi</h3>
+            <p>Fahami fungsi setiap komponen dan bagaimana ia saling berkait.</p>
+            <span class="journey-card__badge">Akan Datang</span>
+          </article>
+
+          <article class="journey-card" data-tilt style="--card-color:#0984E3;">
+            <span class="journey-card__num">03</span>
+            <div class="journey-card__icon">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="7" y="7" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2.4"/><rect x="27" y="27" width="14" height="14" rx="3" stroke="currentColor" stroke-width="2.4"/><path d="M21 14h6a4 4 0 014 4v9" stroke="currentColor" stroke-width="2.4"/></svg>
+            </div>
+            <h3>Model Fungsi</h3>
+            <p>Bina model ringkas untuk menggambarkan hubungan sebab-akibat sesuatu sistem.</p>
+            <span class="journey-card__badge">Akan Datang</span>
+          </article>
+
+          <article class="journey-card" data-tilt style="--card-color:#E17055;">
+            <span class="journey-card__num">04</span>
+            <div class="journey-card__icon">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M24 6v14M24 28v14M6 24h14M28 24h14" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Percanggahan Fizikal</h3>
+            <p>Selami situasi apabila satu ciri perlu "ya" dan "tidak" pada masa sama.</p>
+            <span class="journey-card__badge">Akan Datang</span>
+          </article>
+
+          <article class="journey-card" data-tilt style="--card-color:#FDCB6E;">
+            <span class="journey-card__num">05</span>
+            <div class="journey-card__icon">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M10 10l28 28M38 10L10 38" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Kaedah Pemisahan</h3>
+            <p>Pisahkan percanggahan mengikut ruang, masa, keadaan atau keseluruhan-bahagian.</p>
+            <span class="journey-card__badge">Akan Datang</span>
+          </article>
+
+          <article class="journey-card" data-tilt style="--card-color:#FD79A8;">
+            <span class="journey-card__num">06</span>
+            <div class="journey-card__icon">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M24 4l5.5 11.2L42 17l-9 8.8L35 38 24 32l-11 6 2-12.2-9-8.8 12.5-1.8L24 4z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Prinsip Inventif</h3>
+            <p>Kenali 40 prinsip klasik yang membantu mencetuskan idea penyelesaian kreatif.</p>
+            <span class="journey-card__badge">Akan Datang</span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================= -->
+  <!-- FOOTER                         -->
+  <!-- ============================= -->
+  <footer class="site-footer">
+    <div class="site-footer__gears" aria-hidden="true">
+      <svg class="gear gear--1" viewBox="0 0 100 100"><use href="#gear-shape"/></svg>
+      <svg class="gear gear--2" viewBox="0 0 100 100"><use href="#gear-shape"/></svg>
+      <svg class="gear gear--3" viewBox="0 0 100 100"><use href="#gear-shape"/></svg>
+    </div>
+
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="logo-mark">✦</span>
+        <span class="logo-text">PMI<span class="accent">verse</span></span>
+      </div>
+      <p class="site-footer__tag">Reka Bentuk &amp; Teknologi · Tingkatan 2 · Penyelesaian Masalah Secara Inventif</p>
+      <p class="site-footer__copy">© <span id="year"></span> PMIverse. Dicipta menggunakan <strong>Agentic&nbsp;AI</strong>. Dikuasakan oleh <strong>PMI Agent</strong>.</p>
+    </div>
+  </footer>
+
+  <!-- Hidden reusable SVG defs (gear shape used in footer) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <path id="gear-shape" d="M50 5 L57 5 L59 16 L69 19 L78 12 L84 18 L77 27 L82 36 L93 38 L93 45 L82 48 L84 57 L78 63 L77 73 L69 81 L59 84 L57 95 L50 95 L43 95 L41 84 L31 81 L22 88 L16 82 L23 73 L18 64 L7 62 L7 55 L18 52 L16 43 L22 37 L23 27 L31 19 L41 16 Z" />
+    </defs>
+  </svg>
+
+  <!-- ============================= -->
+  <!-- FLOATING PMI AGENT CHAT WIDGET -->
+  <!-- ============================= -->
+  <div class="agent-widget" id="agentWidget">
+
+    <div class="agent-widget__tooltip" id="agentTooltip">
+      🤖 Tanya PMI Agent!
+      <button type="button" class="agent-widget__tooltip-close" id="agentTooltipClose" aria-label="Tutup mesej">✕</button>
+    </div>
+
+    <div class="agent-widget__panel" id="agentPanel" role="dialog" aria-label="PMI Agent chatbot" aria-hidden="true">
+      <div class="agent-widget__header">
+        <div class="agent-widget__avatar">🤖</div>
+        <div class="agent-widget__header-text">
+          <h3>PMI Agent</h3>
+          <p><span class="pulse-dot"></span> Sedia membantu · tanya apa-apa!</p>
+        </div>
+        <button type="button" class="agent-widget__close" id="agentPanelClose" aria-label="Tutup PMI Agent">✕</button>
+      </div>
+
+      <div class="agent-widget__frame-wrap">
+        <iframe
+          id="pmiAgentFrame"
+          data-src="https://agent.hellotars.com/conv/GxGGxq"
+          title="PMI Agent - Chatbot Pembelajaran RBT"
+          allow="microphone"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="agent-widget__loading" id="agentLoading">
+          <div class="mini-spinner"></div>
+          <span>Memuatkan PMI Agent…</span>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="agent-widget__toggle" id="agentToggle" aria-label="Buka PMI Agent" aria-expanded="false" aria-controls="agentPanel">
+      <span class="agent-widget__icon agent-widget__icon--chat">💬</span>
+      <span class="agent-widget__icon agent-widget__icon--close">✕</span>
+      <span class="agent-widget__ping" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <!-- ============================= -->
+  <!-- SCRIPTS (CDN, no build tools)  -->
+  <!-- ============================= -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
