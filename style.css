@@ -324,8 +324,131 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; letter-spac
   letter-spacing: 0.05em; padding: 4px 12px; border-radius: 999px;
   background: color-mix(in srgb, var(--card-color) 16%, white); color: var(--card-color);
 }
+.journey-card { cursor: pointer; }
+.journey-card:focus-visible { outline: 2px solid var(--card-color); outline-offset: 4px; }
 
-/* ---------- 12. FLOATING PMI AGENT CHAT WIDGET ---------- */
+/* ---------- 12. TOPIC DETAIL MODAL ---------- */
+.topic-modal { position: fixed; inset: 0; z-index: 1300; visibility: hidden; }
+.topic-modal.is-open { visibility: visible; }
+.topic-modal__backdrop {
+  position: absolute; inset: 0; background: rgba(16, 18, 35, 0.6);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity: 0; transition: opacity 0.4s var(--ease-premium);
+}
+.topic-modal.is-open .topic-modal__backdrop { opacity: 1; }
+
+.topic-modal__panel {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.92);
+  width: min(760px, 92vw); height: min(80vh, 780px);
+  background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-lift);
+  display: flex; flex-direction: column; overflow: hidden;
+  opacity: 0; transition: opacity 0.4s var(--ease-premium), transform 0.45s var(--ease-premium);
+}
+.topic-modal.is-open .topic-modal__panel { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+.topic-modal__close {
+  position: absolute; top: 1.1rem; right: 1.1rem; z-index: 5; width: 36px; height: 36px;
+  border-radius: 50%; background: rgba(16,18,35,0.06); color: var(--c-ink); font-size: 0.9rem;
+  display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.3s;
+}
+.topic-modal__close:hover { background: rgba(16,18,35,0.12); transform: rotate(90deg); }
+
+.topic-modal__scroll { flex: 1; overflow-y: auto; padding: 2.6rem 2.6rem 1.5rem; }
+.topic-panel { display: none; animation: topic-fade-in 0.5s var(--ease-premium); }
+.topic-panel.is-active { display: block; }
+@keyframes topic-fade-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+.topic-panel__eyebrow {
+  display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.75rem;
+  letter-spacing: 0.12em; color: var(--card-color); background: color-mix(in srgb, var(--card-color) 14%, white);
+  padding: 5px 14px; border-radius: 999px; margin-bottom: 1rem;
+}
+.topic-panel h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem; }
+.topic-panel__lead { color: var(--c-ink-soft); font-size: 1.02rem; margin-bottom: 1.6rem; }
+.topic-panel h4 {
+  font-family: var(--font-display); font-size: 1.02rem; margin: 1.6rem 0 0.6rem;
+  color: var(--card-color);
+}
+.topic-panel p { color: var(--c-ink-soft); font-size: 0.96rem; margin-bottom: 0.8rem; }
+.topic-panel strong { color: var(--c-ink); }
+
+.topic-example {
+  background: color-mix(in srgb, var(--card-color) 7%, white);
+  border-left: 3px solid var(--card-color); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.1rem 1.3rem; margin: 1.2rem 0;
+}
+.topic-example__tag {
+  display: block; font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
+  letter-spacing: 0.08em; color: var(--card-color); margin-bottom: 0.4rem;
+}
+.topic-example p { margin-bottom: 0; color: var(--c-ink-soft); font-size: 0.93rem; }
+
+.topic-flow {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 1rem 0;
+}
+.topic-flow span {
+  background: rgba(16,18,35,0.05); border-radius: 10px; padding: 0.55rem 0.9rem;
+  font-size: 0.85rem; font-weight: 600; color: var(--c-ink);
+}
+.topic-flow span:not(:last-child)::after { content: "→"; margin-left: 0.5rem; color: var(--card-color); font-weight: 700; }
+.topic-flow--accent span { background: color-mix(in srgb, var(--card-color) 12%, white); color: var(--card-color); }
+.topic-flow--vertical { flex-direction: column; align-items: flex-start; }
+.topic-flow--vertical span::after { content: "" !important; margin: 0 !important; }
+.topic-flow__note { font-size: 0.85rem; font-style: italic; color: var(--c-ink-soft); opacity: 0.85; }
+
+.topic-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.4rem; font-size: 0.88rem; }
+.topic-table th, .topic-table td { text-align: left; padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(16,18,35,0.08); }
+.topic-table th { font-family: var(--font-display); color: var(--card-color); font-size: 0.78rem; letter-spacing: 0.03em; text-transform: uppercase; }
+.topic-table td { color: var(--c-ink-soft); }
+.topic-table tbody tr:hover { background: color-mix(in srgb, var(--card-color) 5%, white); }
+
+.principle-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; margin: 1rem 0 1.6rem; }
+.principle-grid--compact { grid-template-columns: repeat(2, 1fr); }
+.principle-item {
+  background: rgba(16,18,35,0.03); border-radius: var(--radius-sm); padding: 0.85rem 1rem;
+  display: flex; flex-direction: column; gap: 0.3rem;
+}
+.principle-item strong { font-size: 0.87rem; color: var(--card-color); }
+.principle-item span { font-size: 0.82rem; color: var(--c-ink-soft); }
+
+.topic-decision { margin: 1.2rem 0 1.6rem; }
+.topic-decision__question {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; text-align: center;
+  color: var(--c-ink); background: rgba(16,18,35,0.04); border-radius: var(--radius-sm);
+  padding: 1rem; margin-bottom: 1rem;
+}
+.topic-decision__branches { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.topic-decision__branch {
+  border-radius: var(--radius-sm); padding: 1.1rem; text-align: center;
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.topic-decision__branch strong { font-family: var(--font-display); font-size: 0.8rem; letter-spacing: 0.08em; }
+.topic-decision__branch span { font-weight: 700; font-size: 0.95rem; }
+.topic-decision__branch small { color: var(--c-ink-soft); font-size: 0.8rem; }
+.topic-decision__branch--yes { background: rgba(0, 184, 148, 0.1); }
+.topic-decision__branch--yes strong { color: var(--c-green); }
+.topic-decision__branch--no { background: rgba(253, 121, 168, 0.1); }
+.topic-decision__branch--no strong { color: var(--c-pink); }
+
+.topic-modal__nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem 1.6rem; border-top: 1px solid rgba(16,18,35,0.08); background: #fff; flex-shrink: 0;
+}
+.topic-modal__nav-btn {
+  font-weight: 700; font-size: 0.88rem; color: var(--c-purple); padding: 0.6rem 1.1rem;
+  border-radius: 999px; background: rgba(108,92,231,0.08); transition: background 0.3s, transform 0.3s;
+}
+.topic-modal__nav-btn:hover { background: rgba(108,92,231,0.16); transform: translateY(-2px); }
+.topic-modal__nav-btn:disabled { opacity: 0.35; pointer-events: none; }
+.topic-modal__indicator { font-size: 0.82rem; color: var(--c-ink-soft); font-weight: 600; }
+
+@media (max-width: 720px) {
+  .topic-modal__panel { width: 94vw; height: 88vh; }
+  .topic-modal__scroll { padding: 2.2rem 1.4rem 1.2rem; }
+  .principle-grid, .principle-grid--compact, .topic-decision__branches { grid-template-columns: 1fr; }
+}
+
+/* ---------- 13. FLOATING PMI AGENT CHAT WIDGET ---------- */
 .site-nav__agent-link {
   font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; color: var(--c-ink);
   position: relative; padding: 4px 0;
@@ -420,7 +543,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; letter-spac
   .agent-widget__tooltip { right: 72px; font-size: 0.8rem; padding: 0.7rem 1.9rem 0.7rem 0.9rem; }
 }
 
-/* ---------- 13. FOOTER ---------- */
+/* ---------- 14. FOOTER ---------- */
 .site-footer {
   position: relative; background: var(--grad-dark); color: #fff; padding: 4.5rem 0 2.5rem;
   text-align: center; overflow: hidden;
@@ -436,12 +559,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; letter-spac
 .site-footer__copy { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
 .site-footer__copy strong { color: rgba(255,255,255,0.75); }
 
-/* ---------- 14. REVEAL / SPLIT TEXT HELPERS (GSAP hooks) ---------- */
+/* ---------- 15. REVEAL / SPLIT TEXT HELPERS (GSAP hooks) ---------- */
 [data-reveal] { opacity: 0; transform: translateY(28px); }
 [data-split] .word { display: inline-block; overflow: hidden; }
 [data-split] .word > span { display: inline-block; transform: translateY(110%); }
 
-/* ---------- 15. RESPONSIVE ---------- */
+/* ---------- 16. RESPONSIVE ---------- */
 @media (max-width: 1024px) {
   .card-grid, .journey-grid { grid-template-columns: repeat(2, 1fr); }
   .flip-grid { grid-template-columns: repeat(2, 1fr); }

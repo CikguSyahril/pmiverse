@@ -244,6 +244,67 @@
   }
 
   /* ---------------------------------------------------------
+     9b. TOPIC DETAIL MODAL (Section 4 journey cards)
+  --------------------------------------------------------- */
+  const topicModal = document.getElementById("topicModal");
+  const topicModalScroll = document.getElementById("topicModalScroll");
+  const topicPanels = Array.from(document.querySelectorAll("[data-topic-panel]"));
+  const topicOrder = topicPanels.map((p) => p.dataset.topicPanel);
+  const topicPrevBtn = document.getElementById("topicPrev");
+  const topicNextBtn = document.getElementById("topicNext");
+  const topicIndicator = document.getElementById("topicIndicator");
+  let currentTopicIndex = 0;
+  let lastFocusedCard = null;
+
+  function showTopic(index) {
+    currentTopicIndex = Math.max(0, Math.min(topicOrder.length - 1, index));
+    topicPanels.forEach((panel, i) => panel.classList.toggle("is-active", i === currentTopicIndex));
+    topicIndicator.textContent = `${currentTopicIndex + 1} / ${topicOrder.length}`;
+    topicPrevBtn.disabled = currentTopicIndex === 0;
+    topicNextBtn.disabled = currentTopicIndex === topicOrder.length - 1;
+    topicModalScroll.scrollTop = 0;
+  }
+
+  function openTopicModal(topicId, triggerEl) {
+    lastFocusedCard = triggerEl || document.activeElement;
+    const index = topicOrder.indexOf(String(topicId));
+    showTopic(index === -1 ? 0 : index);
+    topicModal.classList.add("is-open");
+    topicModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    topicModal.querySelector(".topic-modal__close").focus();
+  }
+
+  function closeTopicModal() {
+    topicModal.classList.remove("is-open");
+    topicModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastFocusedCard) lastFocusedCard.focus();
+  }
+
+  document.querySelectorAll("[data-topic]").forEach((card) => {
+    card.addEventListener("click", () => openTopicModal(card.dataset.topic, card));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openTopicModal(card.dataset.topic, card);
+      }
+    });
+  });
+
+  document.querySelectorAll("[data-close-modal]").forEach((el) => {
+    el.addEventListener("click", closeTopicModal);
+  });
+  topicPrevBtn.addEventListener("click", () => showTopic(currentTopicIndex - 1));
+  topicNextBtn.addEventListener("click", () => showTopic(currentTopicIndex + 1));
+  document.addEventListener("keydown", (e) => {
+    if (!topicModal.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeTopicModal();
+    if (e.key === "ArrowRight" && !topicNextBtn.disabled) showTopic(currentTopicIndex + 1);
+    if (e.key === "ArrowLeft" && !topicPrevBtn.disabled) showTopic(currentTopicIndex - 1);
+  });
+
+  /* ---------------------------------------------------------
      10. FLOATING PMI AGENT CHAT WIDGET
      Toggle open/close, lazy-load the iframe only on first open
      (saves a network request for visitors who never click it),
